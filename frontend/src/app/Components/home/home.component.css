@@ -1,0 +1,34 @@
+.example-container {
+  width: 100%;
+  height: 100%
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+.drawer{
+  width: 20%;
+  background-color: #020024;
+  /* background: linear-gradient(to bottom right, #020024 10%, #6f6e91 50%); */
+}
+.example-toolbar {
+  height: 45px;
+  background: linear-gradient(148deg, #020024 0%, #6f6e91 50%);
+}
+.drawer-content{
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10%;
+}
+.button{
+  background:  linear-gradient(148deg, #020024 0%, #6f6e91 50%);
+}
+.example-margin{
+  color:  linear-gradient(148deg, #020024 0%, #6f6e91 50%);
+}
+
+
+.file-upload {
+  display: none;
+}

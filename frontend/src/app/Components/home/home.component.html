@@ -1,0 +1,34 @@
+<mat-toolbar color="primary" class="example-toolbar">
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <mat-icon (click)="drawer.toggle()" >menu</mat-icon>
+  </button>
+  <span>Style SDK BOM Upload</span>
+</mat-toolbar>
+<mat-drawer-container class="example-container">
+  <mat-drawer #drawer mode="side"  class="drawer">Drawer content</mat-drawer>
+  <mat-drawer-content class="drawer-content">
+
+    <button mat-raised-button class="button" color="primary" (click)="fileInput.click()">Upload file
+      <input #fileInput type="file" class="file-upload" (change)="onFileChange($event)" multiple="false" />
+  </button>
+  <div *ngIf="uploadloading">
+    <mat-progress-spinner class="example-margin" mode="indeterminate" [diameter]="30"
+        style="margin: auto;">
+    </mat-progress-spinner>
+</div>
+<div *ngIf="uploadsuccess.length>0">
+  <h5 style="color:#020024 ">{{uploadsuccess}}</h5>
+</div>
+<br>
+<br>
+    <button mat-raised-button color="primary" class="button"  (click)="export()">Download BOM Template</button>
+    <div *ngIf="loading">
+      <mat-progress-spinner class="example-margin" mode="indeterminate" [diameter]="30"
+          style="margin: auto;">
+      </mat-progress-spinner>
+  </div>
+  <div *ngIf="success.length>0">
+    <h5 style="color:#020024 ">{{success}}</h5>
+</div>
+  </mat-drawer-content>
+</mat-drawer-container>
