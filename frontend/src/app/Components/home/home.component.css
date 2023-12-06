@@ -1,6 +1,17 @@
 .example-container {
-  width: 100%;
+  width: 250%;
   height: 100%
+}
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+.example-full-width {
+  width: 100%;
+}
+.example-container .mat-form-field + .mat-form-field {
+  margin-left: 8px;
 }
 
 .example-spacer {
@@ -22,7 +33,8 @@
   padding: 10%;
 }
 .button{
-  background:  linear-gradient(148deg, #020024 0%, #6f6e91 50%);
+  background:  linear-gradient(148deg, #020024 0%, #6f6e91 20%);
+  margin-left: 20px;
 }
 .example-margin{
   color:  linear-gradient(148deg, #020024 0%, #6f6e91 50%);

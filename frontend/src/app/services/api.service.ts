@@ -11,8 +11,14 @@ export class ApiService {
 
   constructor(private http : HttpClient) { }
 
-  updateBomTemplate(){
-    return this.http.get<any>(`${this.apiUrl}/bom-upload/bom`);
+  getPlmCnl(style: any){
+    //const body = {style:style}
+    return this.http.post<any>(`${this.apiUrl}/plm-bom-download/plm_bom_cnl`,style);
+  }
+
+  getPlmBom(style: string,bom_cnl : string){
+    //const body = {style:style,bom_cnl:bom_cnl}
+    return this.http.post<any>(`${this.apiUrl}/plm-bom-download/plm_bom_details`,style);
   }
 
 }

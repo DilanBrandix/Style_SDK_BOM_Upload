@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import {
   Body,
   Controller,
@@ -13,10 +14,10 @@ import { BomUploadService } from '../services/bom-upload.service';
 
 @Controller('bom-upload')
 export class BomUploadController {
-  constructor(private bomservice: BomUploadService) {}
+  constructor(private bomservice: BomUploadService) { }
 
   @Get('bom')
   async updateOrderbookDetailsDelayReasons() {
-    return this.bomservice.updateBom();
+    // return this.bomservice.updateBom();
   }
 }
