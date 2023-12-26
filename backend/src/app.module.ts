@@ -19,6 +19,8 @@ import { PlmBomDownloadModule } from './plm-bom-download/plm-bom-download.module
       database: 'Elixir',
       autoLoadEntities: true,
       synchronize: false,
+      connectionTimeout: 360000,
+      requestTimeout: 360000,
       options: {
         cryptoCredentialsDetails: {
           minVersion: 'TLSv1',

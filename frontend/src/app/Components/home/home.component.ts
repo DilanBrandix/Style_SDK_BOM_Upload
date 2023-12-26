@@ -22,24 +22,90 @@ export class HomeComponent implements OnInit {
   style: String = '';
   selected_style: String = '';
   cnldata: any = [];
+  bomdata:any [] = [];
+  success: string = "";
+  error: string ="";
+  arraydata:any [] = [];
+  loading:boolean = false;
 
   ngOnInit(): void {
   }
+
+  data: AOA = [[1, 2], [3, 4]];
+  wopts: XLSX.WritingOptions = { bookType: 'xlsx', type: 'array' };
+  fileName: string = 'Bom Automation Template.xlsx';
+
+
   onSubmit() {
     const style = {
       style: this.style,
     };
 
     //console.log(style);
-    this.api.getPlmCnl(style).subscribe({
-      next: (data: any) => {
-        this.cnldata=data;
-        console.log(this.cnldata);
-      }, error: (error: any) => {
-        console.log(error);
-      }
-    })
+    if (this.style.length>6){
+      this.api.getPlmCnl(style).subscribe({
+        next: (data: any) => {
+          this.cnldata=data;
+          console.log(this.cnldata);
+        }, error: (error: any) => {
+          console.log(error);
+        }
+      })
+    }
   }
-  // onSelect() {
-  // }
+
+  onSelect() {
+    const param = {
+      style: this.style,
+      bom_cnl: this.selected_style,
+    };
+    this.loading = true
+    //console.log('Test1');
+      //console.log(this.bomdata);
+      this.api.getPlmBom(param).subscribe({
+        next: (data: any) => {
+          this.bomdata=data;
+        //console.log(param);
+        //console.log(data);
+         //let datas = XLSX.utils.sheet_to_json(this.bomdata);
+    
+      console.log(this.bomdata);
+      /* generate worksheet */
+   
+    
+      const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.bomdata);
+      /* generate workbook and add the worksheet */
+      const wb: XLSX.WorkBook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, 'Placements');
+
+
+
+      
+
+// Inserting a new row at the beginning
+//  XLSX.utils.sheet_add_aoa(ws, [['New Data', 'New Data', 'New Data']], { origin: -1 });
+//  XLSX.utils.sheet_add_aoa(ws, [['New Data', 'New Data', 'New Data']], { origin: -1 });
+ 
+
+
+
+
+      // Process Data (add a new row)
+      //var ws = workbook.Sheets["Sheet1"];
+      //XLSX.utils.sheet_add_aoa(ws,[[1]], {origin:-1});
+     
+      /* save to file */
+      XLSX.writeFile(wb, this.fileName);
+
+
+
+      this.loading = false
+      this.success ="Bom Downloaded Successfully"
+
+        }, error: (error: any) => {
+          console.log(error);
+        }   
+      })
+     
+  }
 }

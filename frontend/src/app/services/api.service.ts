@@ -16,9 +16,9 @@ export class ApiService {
     return this.http.post<any>(`${this.apiUrl}/plm-bom-download/plm_bom_cnl`,style);
   }
 
-  getPlmBom(style: string,bom_cnl : string){
+  getPlmBom(param: any){
     //const body = {style:style,bom_cnl:bom_cnl}
-    return this.http.post<any>(`${this.apiUrl}/plm-bom-download/plm_bom_details`,style);
+    return this.http.post<any>(`${this.apiUrl}/plm-bom-download/plm_bom_details`,param);
   }
 
 }

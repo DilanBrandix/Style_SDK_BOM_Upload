@@ -9,7 +9,7 @@
     <div class="example-container">
       <mat-form-field  appearance="fill">
         <mat-label>Enter PLM Style</mat-label>
-        <input matInput #input maxlength="10" placeholder="Plm Style" [(ngModel)]="style">
+        <input matInput #input maxlength="10" (input)="onSubmit()" placeholder="Plm Style" [(ngModel)]="style">
       </mat-form-field>
     
       <!-- <mat-form-field appearance="fill">
@@ -23,11 +23,20 @@
       <mat-form-field appearance="fill">
         <mat-label>Select BOM CNL</mat-label>
         <mat-select [(ngModel)]="selected_style">
-          <mat-option  *ngFor="let select of cnldata" [value]="select.bom_cnl">{{select.bom_cnl}}</mat-option>
+          <mat-option  *ngFor="let select of cnldata"  [value]="select.bom_cnl">{{select.bom_cnl}}</mat-option>
         </mat-select>
       </mat-form-field>
 
-      <button mat-raised-button class="button" (click)="onSubmit()" >Download</button>
-      
+      <button mat-raised-button class="button" (click)="onSelect()" >Download</button>
+
+    <div *ngIf="loading">
+      <mat-spinner class="example-margin" [diameter]="30" mode="indeterminate">  </mat-spinner>
     </div>
+
+   <div *ngIf="success.length>0">
+      <h5 style="color:#020024 ">{{success}}</h5>
+    </div>
+
+  </div> 
+   
   </mat-card> 
