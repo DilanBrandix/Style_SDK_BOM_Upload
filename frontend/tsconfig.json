@@ -21,8 +21,9 @@
     "lib": [
       "es2020",
       "dom"
-    ]
+    ],
   },
+
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
