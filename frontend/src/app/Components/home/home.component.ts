@@ -67,40 +67,37 @@ export class HomeComponent implements OnInit {
           this.bomdata=data;
         //console.log(param);
         //console.log(data);
-         //let datas = XLSX.utils.sheet_to_json(this.bomdata);
+        //let datas = XLSX.utils.sheet_to_json(this.bomdata);
     
-      console.log(this.bomdata);
+      //console.log(this.bomdata);
       /* generate worksheet */
-   
-    
-      const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.bomdata);
-      /* generate workbook and add the worksheet */
       const wb: XLSX.WorkBook = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(wb, ws, 'Placements');
-
-
+      const sheet: XLSX.WorkSheet = XLSX.utils.aoa_to_sheet([['', '', '', 'Packing Teamplate']
+      ,['','','Input value','Input value','Input value','Input value','Input value','Input value','Input value','','','Input value','','','Input value','',],
+      ['','','Mandatory','Mandatory','Mandatory','Mandatory','Mandatory','Mandatory','Mandatory','','','Mandatory','','','','',]]);
+      XLSX.utils.sheet_add_json(sheet, this.bomdata, { origin: 3 });
+      XLSX.utils.book_append_sheet(wb, sheet, 'Placemants');
 
       
+      
+      //const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.bomdata);
+      /* generate workbook and add the worksheet */
+      
+      // XLSX.utils.book_append_sheet(wb, ws, 'Placements');     
 
-// Inserting a new row at the beginning
-//  XLSX.utils.sheet_add_aoa(ws, [['New Data', 'New Data', 'New Data']], { origin: -1 });
-//  XLSX.utils.sheet_add_aoa(ws, [['New Data', 'New Data', 'New Data']], { origin: -1 });
- 
-
-
-
-
-      // Process Data (add a new row)
-      //var ws = workbook.Sheets["Sheet1"];
-      //XLSX.utils.sheet_add_aoa(ws,[[1]], {origin:-1});
+      // // Inserting a new row at the beginning
+      // //XLSX.utils.sheet_add_aoa(ws, [['New Data', 'New Data', 'New Data']], { origin: 0 });
+      // //XLSX.utils.sheet_add_aoa(ws, [['New Data', 'New Data', 'New Data']], { origin: 1 });
+      // // Process Data (add a new row)
+      // //var ws = workbook.Sheets["Sheet1"];
+      // //XLSX.utils.sheet_add_aoa(ws,[[1]], {origin:-1});
      
       /* save to file */
       XLSX.writeFile(wb, this.fileName);
-
-
-
       this.loading = false
       this.success ="Bom Downloaded Successfully"
+
+
 
         }, error: (error: any) => {
           console.log(error);
